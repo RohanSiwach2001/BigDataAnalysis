@@ -1,0 +1,126 @@
+1. How to start:
+sudo su hduser
+[sudo] password for bmsce: 
+start-all.txt
+
+start-all.sh
+jps
+8001 NameNode
+8179 DataNode
+8548 ResourceManager
+9700 Jps
+8389 SecondaryNameNode
+8889 NodeManager
+
+2. Before Createing dir :
+hdfs dfs -ls /
+Found 3 items
+drwxr-xr-x   - hduser supergroup          0 2019-10-24 10:59 /shria
+drwxrwxr-x   - hduser supergroup          0 2019-08-01 16:19 /tmp
+drwxr-xr-x   - hduser supergroup          0 2019-08-01 16:03 /user
+
+mkdir cmd :
+hdfs dfs -mkdir /bala
+hduser@bmsce-Precision-T1700:/home/bmsce$ hdfs dfs -ls /
+Found 4 items
+drwxr-xr-x   - hduser supergroup          0 2022-05-31 09:40 /bala
+drwxr-xr-x   - hduser supergroup          0 2019-10-24 10:59 /shria
+drwxrwxr-x   - hduser supergroup          0 2019-08-01 16:19 /tmp
+drwxr-xr-x   - hduser supergroup          0 2019-08-01 16:03 /user
+
+
+3. Create file :
+udo nano demo.txt
+[sudo] password for hduser: 
+
+put cmd : 
+hdfs dfs -put /home/hduser/demo.txt  /balaji/Putcmd.txt
+hdfs dfs -ls /balaji
+Found 4 items
+-rw-r--r--   1 hduser supergroup         21 2022-05-31 10:11 /balaji/CopyFromcmd.txt
+-rw-r--r--   1 hduser supergroup         21 2022-05-31 10:12 /balaji/Copyfromcmd.txt
+-rw-r--r--   1 hduser supergroup         21 2022-05-31 10:03 /balaji/Putcmd.txt
+-rw-r--r--   1 hduser supergroup          0 2022-05-31 09:47 /balaji/hello.txt
+
+
+copyFromLocal:
+hdfs dfs -copyFromLocal /home/hduser/demo.txt  /balaji/Copyfromcmd.txt
+hdfs dfs -ls /balaji
+Found 4 items
+-rw-r--r--   1 hduser supergroup         21 2022-05-31 10:11 /balaji/CopyFromcmd.txt
+-rw-r--r--   1 hduser supergroup         21 2022-05-31 10:12 /balaji/Copyfromcmd.txt
+-rw-r--r--   1 hduser supergroup         21 2022-05-31 10:03 /balaji/Putcmd.txt
+-rw-r--r--   1 hduser supergroup          0 2022-05-31 09:47 /balaji/hello.txt
+
+
+get :
+hdfs dfs -get   /bala/Copyfromcmd.txt /home/hduser/demo2.txt
+ls
+ 1BM18CS034            Music
+ Account.class        'Packet Tracer 7.2.1 for Linux 64 bit.tar.gz'
+ bank.java             person.class
+ bank_kaushal.java     person.java
+ Curr_Acc.class        Pictures
+ demo1.class           pig_1564816082257.log
+ demo1.java            pig_1599287737956.log
+ demo1.txt             pt
+ demo2.txt             PT72Installer
+ demo.class            Public
+ Demo.class            R
+ demo.java             simpgen.java
+ demo.txt              snap
+ derby.log             son.class
+ Desktop               Son.class
+ Documents             student.class
+ Downloads             Templates
+ eclipse-workspace     time.class
+ exam.class            timedemo.class
+ examples.desktop      timedemo.java
+ father.class          TIME.java
+ Father.class          toinstalledlist
+
+copyToLocal:
+hdfs dfs -copyToLocal   /bala/Copyfromcmd.txt /home/hduser/demo1.txt
+ls
+ 1BM18CS034            Music
+ Account.class        'Packet Tracer 7.2.1 for Linux 64 bit.tar.gz'
+ bank.java             person.class
+ bank_kaushal.java     person.java
+ Curr_Acc.class        Pictures
+ demo1.class           pig_1564816082257.log
+ demo1.java            pig_1599287737956.log
+ demo1.txt             pt
+ demo2.txt             PT72Installer
+ demo.class            Public
+ Demo.class            R
+ demo.java             simpgen.java
+ demo.txt              snap
+ derby.log             son.class
+ Desktop               Son.class
+ Documents             student.class
+ Downloads             Templates
+ eclipse-workspace     time.class
+ exam.class            timedemo.class
+ examples.desktop      timedemo.java
+ father.class          TIME.java
+ Father.class          toinstalledlist
+
+mv cmd:
+hadoop fs -mv /bala /balaji
+hdfs dfs -ls /
+Found 4 items
+drwxr-xr-x   - hduser supergroup          0 2022-05-31 10:12 /balaji
+drwxr-xr-x   - hduser supergroup          0 2019-10-24 10:59 /shria
+drwxrwxr-x   - hduser supergroup          0 2019-08-01 16:19 /tmp
+drwxr-xr-x   - hduser supergroup          0 2019-08-01 16:03 /user
+
+
+cp cmd:
+hadoop fs -cp /balaji /sam
+hdfs dfs -ls /
+Found 5 items
+drwxr-xr-x   - hduser supergroup          0 2022-05-31 10:12 /balaji
+drwxr-xr-x   - hduser supergroup          0 2022-05-31 10:34 /sam
+drwxr-xr-x   - hduser supergroup          0 2019-10-24 10:59 /shria
+drwxrwxr-x   - hduser supergroup          0 2019-08-01 16:19 /tmp
+drwxr-xr-x   - hduser supergroup          0 2019-08-01 16:03 /user
